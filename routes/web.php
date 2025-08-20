@@ -16,6 +16,9 @@ route::get('login', [\App\Http\Controllers\LoginController::class, 'login'])->na
 route::post('login_action', [\App\Http\Controllers\LoginController::class, 'loginAction'])->name('login_action');
 
 route::resource('dashboard', \App\Http\Controllers\DashboardController::class);
+route::resource('user', \App\Http\Controllers\UserController::class);
+route::resource('categories', \App\Http\Controllers\CategotiesController::class);
+route::resource('room', \App\Http\Controllers\RoomController::class);
 
 Route::get('callName', [\App\Http\Controllers\BelajarController::class, 'getCallName']);
 Route::get('tambah', [\App\Http\Controllers\BelajarController::class, 'tambah'])->name('tambah');
