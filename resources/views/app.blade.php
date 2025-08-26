@@ -53,7 +53,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Blank Page</h1>
+            <h1>@yield('title')</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -64,7 +64,6 @@
         </div><!-- End Page Title -->
 
         <section class="section">
-            @yield('title')
             @yield('content')
         </section>
 
@@ -88,7 +87,52 @@
     <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
 
     <!-- Template Main JS File -->
-    <script src="{{ asset('assets/js/main.js"></script>
+    <script src="{{ asset('assets/js/main.js') }}""></script>
+    <script>
+        // variable
+        // let, var, const
+
+        let category_id = document.getElementById('category_id');
+        let roomid = document.getElementById('room_id');
+        category_id.addEventListener('change', async function() {
+            const id_category = this.value;
+
+            // fetch / yaitu mengambil data dari backend. Ajax
+            // axios()
+            roomid.innerHTML = "<option value=''>pilih kamar...</option>"
+            try {
+
+                const res = await fetch(`/get-room-by-category/${id_category}`);
+
+                const data = await res.json();
+                data.data.forEach(room => {
+                    const option = document.createElement('option');
+                    option.value = room.id;
+                    option.textContent = `${room.name}`;
+                    option.setAttribute('data-price', room.price);
+                    roomid.appendChild(option);
+
+                });
+
+            } catch (error) {
+
+
+                console.log("error", error);
+
+            }
+
+        });
+
+        roomid.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const price = selectedOption.getAttribute('data-price') || 0;
+            const rupiah = new Intl.NumberFormat("id-ID", {
+                style: "currency",
+                currency: "IDR"
+            }).format(price);
+            document.getElementById('roomRate').textContent = rupiah
+        });
+    </script>
 
 </body>
 

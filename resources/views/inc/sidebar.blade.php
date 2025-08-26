@@ -88,7 +88,18 @@
              </ul>
          </li><!-- End Components Nav -->
 
+
          <li class="nav-item">
+             <a class="nav-link collapsed" href="{{ route('reservation.index') }}">
+                 <i class="bi bi-calendar"></i>
+                 <span>Reservasi</span>
+             </a>
+         </li>
+
+
+         <!-- End Profile Page Nav -->
+
+         {{-- <li class="nav-item">
              <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
                  <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
              </a>
@@ -154,8 +165,8 @@
                      <a href="charts-echarts.html">
                          <i class="bi bi-circle"></i><span>ECharts</span>
                      </a>
-                 </li>
-             </ul>
+                 </li> --}}
+         {{-- </ul>
          </li><!-- End Charts Nav -->
 
          <li class="nav-item">
@@ -230,7 +241,7 @@
                  <i class="bi bi-file-earmark"></i>
                  <span>Blank</span>
              </a>
-         </li><!-- End Blank Page Nav -->
+         </li><!-- End Blank Page Nav --> --}}
 
      </ul>
 

@@ -24,17 +24,19 @@
                             @foreach ($datas as $index => $data)
                                 <tr>
                                     <td>{{ $index += 1 }}</td>
-                                    <td>{{ $data->image_cover }}</td>
+                                    <td><img width="100" src="{{ asset('storage/' . $data->image_cover) }}"
+                                            alt=""></td>
                                     <td>{{ $data->category->name }}</td>
                                     <td>{{ $data->name }}</td>
                                     <td>{{ number_format($data->price) }}</td>
                                     <td>
-                                        <a href="{{ route('room.edit', $data->id) }}" class="btn btn-succes">Edit</a>
+                                        <a href="{{ route('room.edit', $data->id) }}" class="btn btn-success">Edit</a>
                                         <form action="{{ route('room.destroy', $data->id) }}" method="post"
                                             class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button href="" class="btn btn-danger">Delete</button>
+                                            <button class="btn btn-danger">Delete</button>
+
                                         </form>
                                     </td>
                                 </tr>
