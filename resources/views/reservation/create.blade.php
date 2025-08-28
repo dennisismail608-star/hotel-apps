@@ -10,6 +10,13 @@
                     <form action="{{ route('reservation.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label for="" class="form-label">No reservasi</label>
+                                    <input type="text" class="form-control" name="reservation_number"
+                                        placeholder="Masukan Nama Tamu" value="{{ $reservation_number ?? '' }}" readonly>
+                                </div>
+                            </div>
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="" class="form-label">Nama Tamu *</label>
@@ -18,7 +25,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label">Telpon/Hp</label>
-                                    <input type="number" class="form-control" name="phone"
+                                    <input type="number" class="form-control" name="guest_phone"
                                         placeholder="Masukan No Telpon" required>
                                 </div>
                                 <div class="mb-3">
@@ -38,6 +45,10 @@
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Check in *</label>
+                                    <input type="date" id="checkin" name="guest_check_in" class="form-control">
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label">Metode Bayar</label>
@@ -74,12 +85,17 @@
                                     <label for="" class="form-label">Special Request / Note</label>
                                     <textarea name="guest_note" id="" class="form-control"> </textarea>
                                 </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Check out *</label>
+                                    <input type="date" id="checkout" name="guest_check_out" class="form-control">
+                                </div>
                                 <div class="card bg-light">
                                     <div class="card-body">
                                         <h6 class="card-title">Rangkuman Pembayaran</h6>
                                         <div class="d-flex justify-content-between">
                                             <span>Harga Kamar(per malam)</span>
                                             <span id="roomRate">Rp.0</span>
+                                            <input type="hidden" id="roomRateVal">
                                         </div>
                                         <div class="d-flex justify-content-between">
                                             <span>Berapa Malam</span>
@@ -88,14 +104,19 @@
                                         <div class="d-flex justify-content-between">
                                             <span>Subtotal</span>
                                             <span id="subtotal">Rp.0</span>
+                                            <input type="hidden" id="subTotalVal">
                                         </div>
                                         <div class="d-flex justify-content-between">
                                             <span>Tax(10%)</span>
                                             <span id="tax">Rp.0</span>
+                                            <input type="hidden" id="taxVal">
+
                                         </div>
                                         <div class="d-flex justify-content-between">
                                             <span>Grandtodal</span>
                                             <span id="totalAmount">Rp.0</span>
+                                            <input type="hidden" id="totalAmountVal">
+
                                         </div>
                                     </div>
                                 </div>
@@ -111,10 +132,33 @@
 
 
                         <div class="mb-3">
-                            <button class="btn btn-primary">simpan</button>
+                            <button class="btn btn-primary" id="save" type="button">Simpan</button>
                             <a href="{{ url()->previous() }}" class="text-muted">kembali</a>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="mb-3">Reservasi Berhasil</h4>
+                    <p class="text-muted mb-4">Nomor reservasi : <strong id="reservationNumber">#</strong></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">
+                        <i class="bi bi-print"></i>Print Confirmation
+                    </button>
                 </div>
             </div>
         </div>
