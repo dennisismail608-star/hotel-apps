@@ -9,7 +9,7 @@ class BelajarController extends Controller
 {
     public function index()
     {
-        return view("belajar", "compact('user'))");
+        return view("belajar", compact('user'));
     }
 
     public function getCallName()

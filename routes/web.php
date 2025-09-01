@@ -35,6 +35,21 @@ route::post('store_kurang', [\App\Http\Controllers\BelajarController::class, 'st
 route::post('store_bagi', [\App\Http\Controllers\BelajarController::class, 'storeBagi'])->name('store_bagi');
 route::post('store_kali', [\App\Http\Controllers\BelajarController::class, 'storeKali'])->name('store_kali');
 
+Route::get('Tugas', [\App\Http\Controllers\TugasRuang::class, 'tugas'])->name('Tugas');
+Route::get('kubus', [\App\Http\Controllers\TugasRuang::class, 'kubus'])->name('kubus');
+Route::get('balok', [\App\Http\Controllers\TugasRuang::class, 'balok'])->name('balok');
+Route::get('limas', [\App\Http\Controllers\TugasRuang::class, 'limas'])->name('limas');
+Route::get('tabung', [\App\Http\Controllers\TugasRuang::class, 'tabung'])->name('tabung');
+Route::get('bola', [\App\Http\Controllers\TugasRuang::class, 'bola'])->name('bola');
+
+route::post('store_kubus', [\App\Http\Controllers\TugasRuang::class, 'storeKubus'])->name('store_kubus');
+route::post('store_balok', [\App\Http\Controllers\TugasRuang::class, 'storeBalok'])->name('store_balok');
+route::post('store_limas', [\App\Http\Controllers\TugasRuang::class, 'storeLimas'])->name('store_limas');
+route::post('store_tabung', [\App\Http\Controllers\TugasRuang::class, 'storeTabung'])->name('store_tabung');
+route::post('store_bola', [\App\Http\Controllers\TugasRuang::class, 'storeBola'])->name('store_bola');
+
+
+
 // Route::get("guest_information", [\App\Http\Controllers\GuestController::class, "index"])->name('guest_information.index');
 // Route::get("guest_information", [\App\Http\Controllers\GuestController::class, "create"])->name('guest_information');
 // Route::post("guestinformation/store", [GuestController::class, "store"])->name('guestinformation.store');
